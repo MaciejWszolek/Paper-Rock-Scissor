@@ -6,218 +6,60 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="https://fonts.googleapis.com/css?family=Roboto&amp;subset=latin-ext" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 
     <title>Gra papier kamień nożyczki</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: roboto, sans-serif;
-        }
 
-
-        body {
-            max-width: 800px;
-            margin: 0 auto;
-            opacity: 1;
-
-        }
-
-        div.img {
-            position: fixed;
-            left: 0;
-            top: 0;
-            width: 100vw;
-            height: 100vh;
-            background-image: url('scissor.jpg');
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: cover;
-            opacity: 0.4;
-            z-index: -1;
-        }
-
-
-
-        h1 {
-            text-align: center;
-            margin: 20px 0;
-        }
-
-        h3 {
-            margin: 30px 0;
-        }
-
-        .panel {
-            margin: 20px;
-        }
-
-        .panel-left,
-        .panel-right {
-            position: absolute;
-            display: inline-block;
-            width: 48%;
-            overflow: hidden;
-            margin: 40px auto 0;
-            text-align: center;
-        }
-
-        .panel-left {
-            top: 60%;
-            left: 10%;
-        }
-
-        .panel-right {
-            top: 60%;
-            right: 10%;
-        }
-
-        .panel-left p {
-            font-size: 20px;
-        }
-
-        .panel h3 {
-            text-align: center;
-        }
-
-        h1,
-        h3 {
-            text-transform: uppercase;
-        }
-
-        h2 {
-            font-size: 40px;
-
-        }
-
-        .select {
-            overflow: hidden;
-            text-align: center;
-            margin: 0 auto;
-            max-width: 1000px;
-        }
-
-        .select img {
-            width: 200px;
-            margin: 20px;
-            display: inline-block;
-
-        }
-
-
-
-        button {
-            display: block;
-            position: relative;
-            padding: 5px 20px;
-            text-transform: uppercase;
-            font-weight: bold;
-            margin: 10px auto;
-            font-size: 30px;
-            cursor: pointer;
-            border: none;
-            background: rgb(251, 33, 117);
-            background: linear-gradient(0deg, rgba(251, 33, 117, 1) 0%, rgba(234, 76, 137, 1) 100%);
-            color: #fff;
-            overflow: hidden;
-        }
-
-        button:hover {
-            text-decoration: none;
-            color: #fff;
-        }
-
-        button.start:before {
-            position: absolute;
-            content: '';
-            display: inline-block;
-            top: -180px;
-            left: 0;
-            width: 30px;
-            height: 100%;
-            background-color: #fff;
-            animation: shiny-btn1 3s ease-in-out infinite;
-        }
-
-        button:hover {
-            opacity: .7;
-        }
-
-        button:active {
-            box-shadow: 4px 4px 6px 0 rgba(255, 255, 255, .3),
-                -4px -4px 6px 0 rgba(116, 125, 136, .2),
-                inset -4px -4px 6px 0 rgba(255, 255, 255, .2),
-                inset 4px 4px 6px 0 rgba(0, 0, 0, .2);
-        }
-
-
-        @keyframes shiny-btn1 {
-            0% {
-                -webkit-transform: scale(0) rotate(45deg);
-                opacity: 0;
-            }
-
-            80% {
-                -webkit-transform: scale(0) rotate(45deg);
-                opacity: 0.5;
-            }
-
-            81% {
-                -webkit-transform: scale(4) rotate(45deg);
-                opacity: 1;
-            }
-
-            100% {
-                -webkit-transform: scale(50) rotate(45deg);
-                opacity: 0;
-            }
-        }
-
-
-        span {
-            font-weight: bold;
-        }
-    </style>
 </head>
 
 <body>
-    <div class="img">
+    <div class="root ">
+        <div class="img">
+
+        </div>
+        <h1>GRA "PAPIER, KAMIEŃ, NOŻYCZKI"</h1>
+
+        <div class="select">
+
+            <h3>Proszę, wybierz:</h3>
+
+            <img data-option="papier" class="first" src="papier.jpg" alt="" title="Papier">
+
+            <img data-option="kamień" class="second" src="kamien.jpg" alt="" title="Kamień">
+
+            <img data-option="nożyczki" class="third" src="nozyczki.jpg" alt="" title="nożyczki">
+
+        </div>
+        <div class="btn">
+
+            <button class="start">Let's play!</button>
+            <span></span>
+        </div>
+        <div class="panels">
+            <div class="panel-left">
+                <h3>Wyniki gry</h3>
+                <p>Twój wybór:<span data-summary="your-choice"></span></p>
+                <p>Wybór komputera: <span data-summary="ai-choice"></span></p>
+
+            </div>
+            <div class="panel-right">
+                <h3>Aktualne wyniki</h3>
+                <p id="right" class="numbers">liczba gier: <span>0</span></p>
+                <p id="right" class="wins">wygranych: <span>0</span></p>
+                <p id="right" class="losses">przegranych: <span>0</span></p>
+                <p id="right" class="draws">remisów: <span>0</span></p>
+
+            </div>
+        </div>
+    </div>
+
 
     </div>
-    <h1>GRA "PAPIER, KAMIEŃ, NOŻYCZKI"</h1>
 
-    <div class="select">
+    <div class="summary">
+        <span class="result" data-summary="who-win"></span>
+        <div class="bgc"></div>
 
-        <h3>Proszę, wybierz:</h3>
-
-        <img data-option="papier" class="first" src="papier.jpg" alt="" title="Papier">
-
-        <img data-option="kamień" class="second" src="kamien.jpg" alt="" title="Kamień">
-
-        <img data-option="nożyczki" class="third" src="nozyczki.jpg" alt="" title="nożyczki">
-
-    </div>
-    <div class="btn">
-
-        <button class="start">Let's play!</button>
-        <span></span>
-    </div>
-    <div class="panel-left">
-
-    </div>
-    <h3>Wyniki gry</h3>
-    <p>Twój wybór:<span data-summary="your-choice"></span></p>
-    <p>Wybór komputera: <span data-summary="ai-choice"></span></p>
-    <h2>Zwycięzca gry: <span data-summary="who-win"></span></h2>
-    </div>
-
-    <div class="panel-right">
-        <h3>Aktualne wyniki</h3>
-        <p id="right" class="numbers">liczba gier: <span>0</span></p>
-        <p id="right" class="wins">wygranych: <span>0</span></p>
-        <p id="right" class="losses">przegranych: <span>0</span></p>
-        <p id="right" class="draws">remisów: <span>0</span></p>
     </div>
     <footer></footer>
 
