@@ -48,10 +48,18 @@ const aiChoice = function () {
   pretendChoice = "";
 };
 
-const blur = () => {
+const blur = (color) => {
   root.classList.add("blur");
   summary.style.display = "block";
   result.style.display = "block";
+  if (color === "red") {
+    summary.style.backgroundColor = "red";
+  } else if (color === "green") {
+    summary.style.backgroundColor = "green";
+  } else if (color === "gray") {
+    summary.style.backgroundColor = "gray";
+  }
+
   setTimeout(() => {
     root.classList.remove("blur");
     summary.style.display = "none";
@@ -68,7 +76,7 @@ const rules = function () {
     gameSummary.draws++;
     draw.textContent = gameSummary.draws;
     span[2].textContent = "REMIS";
-    blur();
+    blur("gray");
   } else if (
     (game.aiHand === "nożyczki" && game.playerHand === "papier") ||
     (game.aiHand === "kamień" && game.playerHand === "nożyczki") ||
@@ -77,7 +85,7 @@ const rules = function () {
     gameSummary.losses++;
     loss.textContent = gameSummary.losses;
     span[2].textContent = "PRZEGRAŁEŚ!";
-    blur();
+    blur("red");
   } else if (
     (game.aiHand === "papier" && game.playerHand === "nożyczki") ||
     (game.aiHand === "kamień" && game.playerHand === "papier") ||
@@ -86,7 +94,7 @@ const rules = function () {
     gameSummary.wins++;
     win.textContent = gameSummary.wins;
     span[2].textContent = "WYGRAŁEŚ!";
-    blur();
+    blur("green");
   }
 };
 

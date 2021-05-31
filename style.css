@@ -166,18 +166,20 @@ div.summary {
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 3;
+  box-shadow: 0 3px 4px rgba(0, 0, 0, 0.5), 0 0 40px rgba(0, 0, 0, 0.2) inset;
+  background-color: red;
+  opacity: 0.8;
+  z-index: 4;
   /* border-radius: 10px; */
   transition: 0.2s;
 }
 
-div.summary .bgc {
-  box-shadow: 0 3px 4px rgba(0, 0, 0, 0.5), 0 0 40px rgba(0, 0, 0, 0.2) inset;
+/* div.summary .bgc {
+  
   width: 100%;
   height: 100%;
-  background-color: red;
-  opacity: 0.8;
-  z-index: 4;
-}
+ 
+} */
 
 .blur {
   filter: blur(3px);
